@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyTube - Nityashree Photography</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;transition:0.3s;}
+body{background:#f0f2f5;color:#111;transition:0.3s;}
+a{text-decoration:none;}
+button{cursor:pointer;transition:0.3s;}
+
+/* Header */
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#ff0000;color:#fff;position:sticky;top:0;z-index:1000;transition:0.3s;}
+header .logo{display:flex;align-items:center;gap:10px;}
+header .logo img{height:40px;border-radius:50%;}
+header .search-box{flex:1;margin:0 20px;display:flex;}
+header .search-box input{flex:1;padding:6px 10px;border:none;border-radius:20px 0 0 20px;outline:none;}
+header .search-box button{padding:6px 12px;border:none;background:#222;color:#fff;border-radius:0 20px 20px 0;}
+header .search-box button:hover{background:#555;}
+header .profile img{width:40px;height:40px;border-radius:50%;border:2px solid #fff;}
+
+/* Container & Sidebar */
+.container{display:flex;flex:1;gap:20px;padding:20px;transition:0.3s;}
+.sidebar{width:200px;background:#fff;padding:20px;box-shadow:2px 0 5px rgba(0,0,0,0.1);}
+.sidebar a{display:block;padding:10px;margin-bottom:5px;color:#111;border-radius:5px;transition:0.3s;}
+.sidebar a:hover{background:#f44336;color:#fff;}
+.main-content{flex:1;display:flex;flex-direction:column;gap:20px;}
+
+/* Hero Video */
+.hero-video{position:relative;overflow:hidden;background:#fff;padding:20px;border-radius:10px;display:flex;gap:20px;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.hero-video video{width:70%;border-radius:8px;display:block;}
+.hero-video::after{content:"";position:absolute;top:0;left:0;width:70%;height:100%;border-radius:8px;background:linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));pointer-events:none;}
+.hero-info{flex:1;z-index:1;}
+.hero-info h2{font-size:20px;margin-bottom:10px;}
+.hero-info p{color:#555;}
+.hero-logo{display:flex;align-items:center;gap:10px;margin-top:10px;}
+.hero-logo img{width:50px;border-radius:50%;}
+
+/* Video Grid */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.video-card{position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);overflow:hidden;cursor:pointer;color:#000;transition:transform .2s;}
+.video-card:hover{transform:scale(1.03);}
+.video-card img{width:100%;height:150px;object-fit:cover;}
+.video-info{padding:10px;}
+.video-info h3{font-size:16px;margin-bottom:5px;}
+.video-info p{font-size:13px;color:#555;}
+
+/* Video Player Section */
+.video-player{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.video-player video{width:100%;max-height:450px;border-radius:8px;margin-bottom:15px;}
+.video-title{margin:10px 0;font-size:18px;font-weight:bold;}
+.buttons{display:flex;gap:10px;margin-bottom:10px;}
+.buttons button{padding:8px 16px;border:none;border-radius:5px;font-weight:bold;transition:0.3s;}
+.like{background:#ff4444;color:#fff;}
+.like:hover{opacity:0.85;}
+.subscribe{background:#ff0000;color:#fff;}
+.subscribe.subscribed{background:#000;color:#fff;}
+.subscribe:hover{opacity:0.85;}
+.related{margin-top:20px;}
+.related h4{margin-bottom:10px;}
+.related-video{display:flex;gap:10px;margin-bottom:10px;background:#111;color:#fff;padding:5px;border-radius:5px;align-items:center;text-decoration:none;transition:0.3s;}
+.related-video img{width:120px;height:70px;object-fit:cover;border-radius:5px;}
+.related-video div{flex:1;}
+.related-video h5{margin:0;font-size:14px;}
+.related-video p{margin:3px 0;font-size:12px;color:#ccc;}
+
+/* Footer */
+footer{background:#111;color:#fff;text-align:center;padding:15px;margin-top:20px;font-size:14px;}
+
+/* Media Queries */
+@media(max-width:768px){
+.container{flex-direction:column;}
+.sidebar{width:100%;display:flex;overflow-x:auto;}
+.sidebar a{flex:none;margin-right:10px;}
+.hero-video{flex-direction:column;}
+.hero-video video{width:100%;}
+.video-player video{max-height:250px;}
+}
+
+/* Dark Mode */
+body.dark-mode{background:#121212;color:#eee;}
+body.dark-mode header{background:#222;}
+body.dark-mode .sidebar{background:#1f1f1f;}
+body.dark-mode .sidebar a{color:#eee;}
+body.dark-mode .sidebar a:hover{background:#ff4444;color:#fff;}
+body.dark-mode .hero-video, body.dark-mode .video-card, body.dark-mode .video-player{background:#1e1e1e;box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+body.dark-mode .video-info p, body.dark-mode .hero-info p{color:#ccc;}
+body.dark-mode .related-video{background:#333;}
+body.dark-mode footer{background:#222;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://i.ibb.co/0VR8bVwW/np.webp" alt="logo">
+    <h2>MyTube</h2>
+  </div>
+  <div class="search-box">
+    <input type="text" placeholder="વિડિઓ શોધો...">
+    <button>🔍</button>
+  </div>
+  <div class="profile">
+    <img src="https://i.ibb.co/0VR8bVwW/np.webp" alt="profile">
+  </div>
+  <button onclick="toggleDarkMode()" style="margin-left:15px;padding:6px 12px;border:none;border-radius:5px;background:#000;color:#fff;cursor:pointer;">🌓 ડાર્ક મોડ</button>
+</header>
+
+<div class="container">
+  <div class="sidebar">
+    <a href="#">🏠 હોમ</a>
+    <a href="#">🔥 ટ્રેન્ડિંગ</a>
+    <a href="#">📺 સબ્સ્ક્રિપ્શન</a>
+    <a href="#">🎞️ લાઇબ્રેરી</a>
+    <a href="#">🕓 હિસ્ટરી</a>
+    <a href="#">⏰ પછી જોવું</a>
+  </div>
+
+  <div class="main-content">
+    <!-- Hero Section -->
+    <div class="hero-video">
+      <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop poster="https://picsum.photos/400/200?random=10"></video>
+      <div class="hero-info">
+        <h2>આ અઠવાડિયાનો સૌથી લોકપ્રિય વિડિઓ</h2>
+        <p>૧૦ મિલિયન વ્યૂઝ • ૧ દિવસ પહેલા</p>
+        <div class="hero-logo">
+          <img src="https://i.ibb.co/0VR8bVwW/np.webp" alt="Logo">
+          <span>NP Photography Channel</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Grid -->
+    <h3>📹 વધુ ગુજરાતી વિડિઓઝ</h3>
+    <div class="video-grid">
+      <div class="video-card" onclick="openPlayer('સુંદર નેચર વિડિઓ','https://www.w3schools.com/html/mov_bbb.mp4')">
+        <img data-src="https://picsum.photos/400/200?random=1" alt="" class="lazy">
+        <div class="video-info">
+          <h3>સુંદર નેચર વિડિઓ</h3>
+          <p>1.2 લાખ views · 2 દિવસ પહેલા</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Player Section -->
+    <div class="video-player" id="player-section" style="display:none;">
+      <video id="player" controls autoplay></video>
+      <div class="video-title" id="title"></div>
+      <div class="buttons">
+        <button class="like">👍 Like (<span id="like-count">0</span>)</button>
+        <button class="subscribe">🔔 Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>© 2025 Nityashree Photography | MyTube વેબસાઇટ તમારા દ્વારા બનાવેલ 😊</footer>
+
+<script>
+// Video Player
+function openPlayer(title, src){
+  document.getElementById('player-section').style.display='block';
+  document.getElementById('title').textContent = title;
+  document.getElementById('player').src = src;
+  window.scrollTo({top:document.getElementById('player-section').offsetTop-20, behavior:'smooth'});
+
+  liked=false;
+  document.getElementById('like-count').textContent=0;
+  subscribed=false;
+  let subBtn = document.querySelector('.subscribe');
+  subBtn.textContent="🔔 Subscribe";
+  subBtn.classList.remove('subscribed');
+}
+
+// Like & Subscribe
+let liked=false;
+let likeCount=0;
+let subscribed=false;
+
+document.querySelector('.like').addEventListener('click', ()=>{
+  if(!liked){likeCount++;liked=true;}
+  document.getElementById('like-count').textContent=likeCount;
+});
+
+document.querySelector('.subscribe').addEventListener('click', ()=>{
+  subscribed=!subscribed;
+  let subBtn = document.querySelector('.subscribe');
+  if(subscribed){
+    subBtn.textContent="🔔 Subscribed";
+    subBtn.classList.add('subscribed');
+  }else{
+    subBtn.textContent="🔔 Subscribe";
+    subBtn.classList.remove('subscribed');
+  }
+});
+
+// Dark Mode
+function toggleDarkMode(){document.body.classList.toggle('dark-mode');}
+if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){document.body.classList.add('dark-mode');}
+
+// Lazy Load Images
+document.addEventListener("DOMContentLoaded", function(){
+  let lazyImages = document.querySelectorAll('img.lazy');
+  lazyImages.forEach(img=>{
+    img.src = img.dataset.src;
+    img.classList.remove('lazy');
+  });
+});
+</script>
+</body>
+</html>
